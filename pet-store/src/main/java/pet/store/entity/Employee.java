@@ -6,13 +6,13 @@ import lombok.*;
 @Entity
 @Data
 public class Employee {
-	String employeeFirstName, employeeLastName, employeePhone, employeeJobTitle;
+	private String employeeFirstName, employeeLastName, employeePhone, employeeJobTitle;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long employeeId;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "pet_store_id")
+	private Long employeeId;
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	PetStore petStore;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pet_store_id")
+	private PetStore petStore;
 }

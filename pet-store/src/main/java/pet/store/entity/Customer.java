@@ -1,5 +1,6 @@
 package pet.store.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -8,12 +9,12 @@ import lombok.*;
 @Entity
 @Data
 public class Customer {
-	String customerFirstName, customerLastName, customerEmail;
+	private String customerFirstName, customerLastName, customerEmail;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long customerId;
-	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
+	private Long customerId;
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	Set<PetStore> petStores;
+	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
+	private Set<PetStore> petStores = new HashSet<>();
 }
